@@ -16,7 +16,7 @@ You may also see any lint errors in the console.
 
 
 To login enter :\
-username : string
+username : string\
 password : string
 
 
