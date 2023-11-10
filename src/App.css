@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
 .App {
   text-align: center;
 }
@@ -58,5 +59,12 @@
 
 table,tr,th,td{
   border-collapse: collapse;
+  border: 1px solid rgb(183, 183, 183);
+  padding: 10px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+table{
   border: 1px solid black;
+  border-radius: 50px;
 }

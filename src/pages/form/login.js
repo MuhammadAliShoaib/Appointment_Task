@@ -8,6 +8,11 @@ import { useNavigate } from 'react-router-dom';
 export default function Login() {
 
     const [token, setToken] = useState(null);
+    const [flag, setFlag] = useState(false);
+    const [user,setUser] = useState({})
+
+
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -15,27 +20,24 @@ export default function Login() {
     const api2 = "https://hiring-test-task.vercel.app/api/refresh-token";
     const api3 = "https://hiring-test-task.vercel.app/api/appointments"
 
+
+    //use to retrive token from login api
     const getData = async (e) => {
         e.preventDefault();
-        const user = {
-            username: "string",
-            password: "string",
-        };
 
         try {
             const res = await axios.post(api, user);
             setToken(res.data.token);
+            setFlag(true)
         } catch (err) {
             console.log(err);
         }
     };
 
+    //if token retrieved then authorization done
     useEffect(() => {
         check();
-        if (token != null) {
-            getAppointment()
-        }
-    }, [token]);
+    }, [flag]);
 
     const check = async () => {
         if (!token) return;
@@ -50,6 +52,7 @@ export default function Login() {
         try {
             const res = await axios.post(api2, null, config);
             setToken(res.data.newToken);
+            getAppointment()
         } catch (err) {
             if (err.response.status === 401) {
                 // Handle token refresh here
@@ -61,17 +64,19 @@ export default function Login() {
         }
     };
 
+    // refresher token if token gets expired
     const refreshToken = async (config) => {
-        // Implement logic to refresh the token
-        // Make a request to the refresh token endpoint and update the state with the new token
         try {
             const res = await axios.post(api2, null, config);
             setToken(res.data.newToken);
+            getAppointment()
         } catch (err) {
             console.log("Error refreshing token:", err);
         }
     };
 
+
+    //retrieves all the appointments of the user
     let getAppointment = async () => {
         try {
             const config = {
@@ -82,9 +87,9 @@ export default function Login() {
             };
 
             const res = await axios.get(api3, config);
+            localStorage.setItem("token",token);
             dispatch(addData(res.data))
             navigate('/appointment')
-            // console.log(res.data);
         } catch (err) {
             console.log("Error getting data:", err);
         }
@@ -102,12 +107,12 @@ export default function Login() {
                 <form className="login-form">
                     <div className="form-group">
                         <label>Username:</label>
-                        <input type="text" id="username" name="username" placeholder='Enter username' />
+                        <input onChange={(e)=>setUser({...user,username:e.target.value})} type="text" id="username" name="username" placeholder='Enter username' />
                     </div>
 
                     <div className="form-group">
                         <label>Password:</label>
-                        <input type="password" id="password" name="password" placeholder='Enter password' />
+                        <input onChange={(e)=>setUser({...user,password:e.target.value})} type="password" id="password" name="password" placeholder='Enter password' />
                     </div>
 
                     <div className="form-group">
