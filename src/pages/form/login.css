@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+.login {
+    font-family: 'Rajdhani', sans-serif;
+    background-color: #fff;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    width: 300px;
+    max-width: 100%;
+}
+
+.login-container h2 {
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-group input {
+    font-family: 'Rajdhani', sans-serif;
+    padding: 8px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #000;
+    width: 94%;
+    
+}
+
+.form-group button {
+    background-color: #0AA36E;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.form-group input:focus{
+    /* border: 1px solid #0AA36E; */
+    box-shadow: inset 0.5px 1px 8px rgba(10, 163, 110, 0.5);
+    border-bottom: 2px solid #0AA36E;
+}
