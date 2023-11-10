@@ -9,10 +9,11 @@ export default function Appointment() {
 
 
   const data = appointments.items;
-
   const minHour = appointments.min_hour;
   const maxHour = appointments.max_hour;
 
+
+  // method to convert hours into array form according to the max and min hours
   let isAM = true;
   const hoursArray = Array.from({ length: maxHour - minHour + 1 }, (_, index) => {
     const hour = (index + minHour) % 12 || 12; // Convert to 12-hour format
@@ -24,19 +25,14 @@ export default function Appointment() {
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-
-
-
   return (
     <>
       <SMNavbar />
 
 
-      <div style={{display:'flex',justifyContent: 'center', alignItems:'center',marginTop:"35px",marginBottom:"35px"}}>
-
-        <table style={{minWidth:'75%'}}>
+      <div style={{ overflowX: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "35px", marginBottom: "35px" }}>
+        <table style={{ minWidth: '75%', maxWidth: '100%' }}>
           <thead>
-
             <tr>
               <th></th>
               <th>Monday</th>
@@ -62,8 +58,7 @@ export default function Appointment() {
                         )) : ""}
                       </td>
                     )
-                  }
-                  )}
+                  })}
                 </tr>
               )
             })}
